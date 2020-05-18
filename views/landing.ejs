@@ -27,7 +27,41 @@
     </div>
 
 </div>
-<a href="/recommendations" button type="submit" class="btn btn-success" onclick='a'>Submit your information</button>
+
+<div class="row">
+    <form>
+        <input type="text" id="name" name="name" placeholder="Full Name"><br><br>
+        <input type="text" id="email" name="email" placeholder="Email"><br><br>
+        <select id="age" name="age">
+            <option>Age</option>
+            <option>15-25</option>
+            <option>25-35</option>
+            <option>35-45</option>
+            <option>45-55</option>
+            <option>55-65</option>
+            <option>65+</option>
+        </select><br><br>
+        <select id="gender" name="gender">
+            <option>Female</option>
+            <option>Male</option>
+            <option>Other</option>
+        </select><br><br>
+        <label>What type of recommendation?</label><br>
+            <input type="checkbox" id="movie" name="movie" value="movie">
+            <label for="movie">Movie</label><br>
+            <input type="checkbox" id="tv" name="tv" value="tv">
+            <label for="tv">TV Show</label><br>
+            <input type="checkbox" id="album" name="album" value="album">
+            <label for="album">Album</label><br>
+            <input type="checkbox" id="book" name="book" value="book">
+            <label for="book">Books</label><br>
+            <input type="checkbox" id="podcast" name="podcast" value="podcast">
+            <label for="podcast">Podcast</label><br><br>
+    </form>
+
+    <a href="/recommendations" button type="submit" class="btn btn-success" onclick='a'>Submit your information</button>
+</div>
+
 
 </main>
 
