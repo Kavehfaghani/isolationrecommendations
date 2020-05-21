@@ -1,73 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <% include partials/header.ejs %>
+    <head>
+        <% include partials/header.ejs %>
+        <style>
 
-</head>
-<body class="container">
+            /* Style the body */
+            body {
+            font-family: Arial;
+            margin: 0;
+            }
 
-<header>
-    <% include partials/header.ejs %>
+            /* Header/logo Title */
+            .header {
+            padding: 60px;
+            text-align: center;
+            background: white;
+            color: black;
+            }
+            
 
-</header>
+            /* Column container */
+            .flex-container {  
+            display: flex;
+            flex-wrap: wrap;
+            }
 
-<main>
-<div class="row">
-    <div class="col-sm-8">    
-        <div class="jumbotron">
-            <h1>This is the page where you will enter your demographic information</h1>
-            <p>Welcome to your landing page</p>
-        </div>
-    </div>
+            /* Create two unequal columns that sits next to each other */
+            /* Sidebar/left column */
+            .side {
+            flex: 30%;
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            }
 
-    <div class="col-sm-4">        
-        <div class="well">
-            <h3>Look I'm A Sidebar!</h3>
-        </div>
-    </div>
+            /* Main column */
+            .main {
+            flex: 70%;
+            background-color: skyblue;
+            padding: 20px 20% 20px 20%;
+            }
 
-</div>
+            /* Style inputs with type="text", select elements and textareas */
+            input[type=text], select, textarea {
+                width: 100%; /* Full width */
+                padding: 12px; /* Some padding */ 
+                border: 1px solid #ccc; /* Gray border */
+                border-radius: 4px; /* Rounded borders */
+                box-sizing: border-box; /* Make sure that padding and width stays in place */
+                margin-top: 6px; /* Add a top margin */
+                margin-bottom: 16px; /* Bottom margin */
+                resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+            }
 
-<div class="row">
-    <form>
-        <input type="text" id="name" name="name" placeholder="Full Name"><br><br>
-        <input type="text" id="email" name="email" placeholder="Email"><br><br>
-        <select id="age" name="age">
-            <option>Age</option>
-            <option>15-25</option>
-            <option>25-35</option>
-            <option>35-45</option>
-            <option>45-55</option>
-            <option>55-65</option>
-            <option>65+</option>
-        </select><br><br>
-        <select id="gender" name="gender">
-            <option>Female</option>
-            <option>Male</option>
-            <option>Other</option>
-        </select><br><br>
-        <label>What type of recommendation?</label><br>
-            <input type="checkbox" id="movie" name="movie" value="movie">
-            <label for="movie">Movie</label><br>
-            <input type="checkbox" id="tv" name="tv" value="tv">
-            <label for="tv">TV Show</label><br>
-            <input type="checkbox" id="album" name="album" value="album">
-            <label for="album">Album</label><br>
-            <input type="checkbox" id="book" name="book" value="book">
-            <label for="book">Books</label><br>
-            <input type="checkbox" id="podcast" name="podcast" value="podcast">
-            <label for="podcast">Podcast</label><br><br>
-    </form>
+            /* submit button */
+            .btn-holder{
+                text-align: center;
+            }
+            
+            /* Footer */
+            .footer {
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+            font-size: 8px;
+            }
 
-    <a href="/recommendations" button type="submit" class="btn btn-success" onclick='a'>Submit your information</button>
-</div>
+            /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 700px) {
+                .row, .navbar {   
+                    flex-direction: column;
+                }
+            }
 
 
-</main>
+        </style>
+    </head>
+    <body >
 
-<footer>
-</footer>
+        <header>
+            <% include partials/header.ejs %>
+        </header>
 
-</body>
+        <main>
+            <!-- Header -->
+            <div class="header">
+                <h1>Isolation Recommendations</h1>
+            </div>
+            
+            <!-- The flexible grid (content) -->
+            <div class="flex-container">
+                <div class="side">
+                    <h2>Get Personalised Recommendations</h2>
+                </div>
+                <div class="main">
+                    <form action="/recommendations">
+                        <div class="row">
+                            <div class="col-25">
+                            <label for="name">Full Name</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="name" name="name" placeholder="Your Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                            <label for="email">Email</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="email" name="email" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                            <label for="age">Age</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="age" name="age" placeholder="Age">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                            <label for="gender">Gender</label>
+                            </div>
+                            <div class="col-75">
+                                <select id="gender" name="gender">
+                                    <option>Female</option>
+                                    <option>Male</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                            <label for="recommendationtype">What type of recommendation?</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="checkbox" id="movie" name="movie" value="movie">
+                                <label for="movie">Movie</label><br>
+                                <input type="checkbox" id="tv" name="tv" value="tv">
+                                <label for="tv">TV Show</label><br>
+                                <input type="checkbox" id="album" name="album" value="album">
+                                <label for="album">Album</label><br>
+                                <input type="checkbox" id="book" name="book" value="book">
+                                <label for="book">Books</label><br>
+                                <input type="checkbox" id="podcast" name="podcast" value="podcast">
+                                <label for="podcast">Podcast</label>
+                            </div>
+                        </div>
+                        <div class="btn-holder">
+                            <input type="submit" class="btn btn-success" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        
+        <!-- Footer -->
+            <div class="footer">
+                <h2>A K&B Production</h2>
+            </div>
+        </main>
+
+        <footer>
+        </footer>
+    </body>
 </html>
 
